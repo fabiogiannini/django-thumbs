@@ -2,7 +2,7 @@
 Django-thumbs
 =============
 
-The easiest way to create thumbnails for your images with Django. Works with any StorageBackend.
+The easiest way to create thumbnails for your images with Django. Works with any StorageBackend. Updated to be compatible up to Python 3.6.
 
 
 Features
@@ -18,27 +18,19 @@ Features
 Requirements
 ============
 
-* Python 2.5+
-* Django 1.1+
+* Python 2.5+ (Python 3.6.3 tested)
+* Django 1.1+ (Django 1.10.8)
 * PIL (Python Image Library)
 
 
 Getting It
 ==========
 
-You can get Django-Thumbs by using pip or easy_install:
-
-::
-
-  $ pip install django-thumbs
-  or
-  $ easy_install django-thumbs
-
 If you want to install it from source, grab the git repository from github and run setup.py:
 
 ::
 
-  $ git clone git://github.com/skitoo/django-thumbs.git
+  $ git clone git://github.com/fabiogiannini/django-thumbs.git
   $ cd django-thumbs
   $ python setup.py install
 
