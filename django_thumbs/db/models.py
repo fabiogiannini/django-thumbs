@@ -102,7 +102,8 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
             if acceptedSize is not None:
                 return self._url_for_size(acceptedSize)
             raise ValueError("The requested thumbnail size %s doesn't exist" % sizeStr)
-        raise ValueError("Filename %s is wrong, it should be with widith and height" % name)
+        # raise ValueError("Filename %s is wrong, it should be with width and height" % name)
+        return ""
 
     def _generate_thumb(self, image, size):
         """Generates a thumbnail of `size`.
