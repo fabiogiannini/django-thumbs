@@ -89,18 +89,20 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
         """
         sizeStr = name.replace("url_", "")
         width, height = sizeStr.split("x")
-        requestedSize = (int(width), int(height))
-        acceptedSize = None
-        if THUMBS_GENERATE_ANY_SIZE:
-            acceptedSize = requestedSize
-        else:
-            for configuredSize in self.field.sizes:
-                # FIXME: fuzzy search, accept nearest size
-                if requestedSize == configuredSize:
-                    acceptedSize = requestedSize
-        if acceptedSize is not None:
-            return self._url_for_size(acceptedSize)
-        raise ValueError("The requested thumbnail size %s doesn't exist" % sizeStr)
+        if (isinstance(width, int) and isinstance(height, int)):
+            requestedSize = (int(width), int(height))
+            acceptedSize = None
+            if THUMBS_GENERATE_ANY_SIZE:
+                acceptedSize = requestedSize
+            else:
+                for configuredSize in self.field.sizes:
+                    # FIXME: fuzzy search, accept nearest size
+                    if requestedSize == configuredSize:
+                        acceptedSize = requestedSize
+            if acceptedSize is not None:
+                return self._url_for_size(acceptedSize)
+            raise ValueError("The requested thumbnail size %s doesn't exist" % sizeStr)
+        raise ValueError("Filename %s is wrong, it should be with widith and height" % name)
 
     def _generate_thumb(self, image, size):
         """Generates a thumbnail of `size`.
